@@ -2,6 +2,7 @@ using Ecommerce.Common;
 using Microsoft.AspNetCore.Mvc;
 using Ecommerce.Catalog.Entities;
 using Ecommerce.Catalog.Dtos;
+using System.Linq.Expressions;
 
 
 namespace Ecommerce.Catalog.Controllers
@@ -18,10 +19,18 @@ namespace Ecommerce.Catalog.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts(
+            [FromQuery] string? filter = null
+        )
         {
             try {
-                var products = (await _repository.GetAllAsync())
+                Expression<Func<Product, bool>> filterExpression = product => true;
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    filterExpression = product => product.Name.Contains(filter);
+                }
+
+                var products = (await _repository.GetAllAsync(filterExpression))
                     .Select(product => product.AsDto());
 
                 return Ok(products);
