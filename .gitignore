@@ -1,0 +1,62 @@
+# Binaries
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.docstates
+*.sln.ide
+
+# Resharper files
+_ReSharper*/
+
+# Rider files
+.idea/
+*.sln.iml
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# NuGet packages
+*.nuget.cache
+*.dll
+*.exe
+*.pdb
+*.dll.config
+*.cache
+*.log
+*.vspscc
+*.pidb
+*.svclog
+*.tlog
+*.obj
+*.user
+*.suo
+*.cache
+*.docstates
+*.local
+*.ldf
+*.mdf
+*.ldd
+*.mdf.*
+*.ldd.*
+*.dbmdl
+*.dbproj.user
+*.dbproj.shadow
+*.rdl.data
+*.rdl.user
+*.rdl.*
+
+# Rider
+.idea
+
+# MSBuild binary and log files
+bin/
+msbuild.log
