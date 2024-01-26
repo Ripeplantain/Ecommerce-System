@@ -60,3 +60,5 @@ _ReSharper*/
 # MSBuild binary and log files
 bin/
 msbuild.log
+
+.monogdbdata
