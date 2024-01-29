@@ -9,7 +9,22 @@ services:
       - 27018:27017
     volumes:
       - .monogdbdata:/data/db
+  
+  postgre:
+    image: postgres
+    container_name: postgres_database
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: Ecommerce.UserManagementDB
+    volumes:
+      - .postgresdata:/var/lib/postgresql/data
+    
 
 
 volumes:
   mongodbdata:
+  postgresdata:
