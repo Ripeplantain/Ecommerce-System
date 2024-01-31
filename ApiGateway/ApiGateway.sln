@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2781421C-896A-483E-9580-A9B046390E91}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.ApiGateway", "src\Ecommerce.ApiGateway\Ecommerce.ApiGateway.csproj", "{DB19B4CE-6806-49A9-9546-D7C9AA42FE85}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB19B4CE-6806-49A9-9546-D7C9AA42FE85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB19B4CE-6806-49A9-9546-D7C9AA42FE85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB19B4CE-6806-49A9-9546-D7C9AA42FE85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB19B4CE-6806-49A9-9546-D7C9AA42FE85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DB19B4CE-6806-49A9-9546-D7C9AA42FE85} = {2781421C-896A-483E-9580-A9B046390E91}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B88F3213-4E5F-47B9-8AA1-6CF6CE2B2ABC}
+	EndGlobalSection
+EndGlobal

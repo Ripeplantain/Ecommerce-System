@@ -1,0 +1,124 @@
+{
+    "Routes": [
+
+        {
+            "DownstreamPathTemplate": "/auth/login",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5056
+                }
+            ],
+            "UpstreamPathTemplate": "/auth/login",
+            "UpstreamHttpMethod": ["Post"]
+        },
+        {
+            "DownstreamPathTemplate": "/auth/register",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5056
+                }
+            ],
+            "UpstreamPathTemplate": "/auth/register",
+            "UpstreamHttpMethod": ["Post"]
+        },
+        {
+            "DownstreamPathTemplate": "/auth/refresh-token",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5056
+                }
+            ],
+            "UpstreamPathTemplate": "/auth-refresh-token",
+            "UpstreamHttpMethod": ["Post"]
+        },
+
+
+
+        {
+            "DownstreamPathTemplate": "/items",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5071
+                }
+            ],
+            "UpstreamPathTemplate": "/items",
+            "UpstreamHttpMethod": ["Get"],
+            "FileCacheOptions": {
+                "TtlSeconds": 30,
+                "Region": "ItemsRegion"
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/items/{id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5071
+                }
+            ],
+            "UpstreamPathTemplate": "/items/{id}",
+            "UpstreamHttpMethod": ["Get"]
+        },
+        {
+            "DownstreamPathTemplate": "/items",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5071
+                }
+            ],
+            "UpstreamPathTemplate": "/items",
+            "UpstreamHttpMethod": ["Post"],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/items/{id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5071
+                }
+            ],
+            "UpstreamPathTemplate": "/items/{id}",
+            "UpstreamHttpMethod": [ "Put", "Delete"],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": []
+            }
+        },
+
+
+
+        {
+            "DownstreamPathTemplate": "/favicon.ico",
+            "UpstreamPathTemplate": "/favicon.ico",
+            "UpstreamHttpMethod": [ "Get" ],
+            "Priority": 0,
+            "DelegatingHandlers": [],
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "ignore-this-host",
+                    "Port": 5071
+                }
+            ]
+        }
+    ],
+    "GlobalConfiguration": {
+        "BaseUrl": "http://localhost:5178"
+    }
+}
