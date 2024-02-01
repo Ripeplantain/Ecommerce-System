@@ -90,7 +90,9 @@ namespace Ecommerce.Order.Repository
         {
             try {
                 ArgumentNullException.ThrowIfNull(filter, nameof(filter));
-                var orders = _dbContext.Orders.Where(b => b.Status == filter);
+                var orders = _dbContext.Orders;
+                orders.Where(order => order.Status == filter);
+                orders.Where(order => order.UserId == Guid.Parse(filter));
                 return (IEnumerable<OrderDto>)await orders.ToListAsync();
             } catch (Exception ex){
                 throw new Exception(ex.Message);

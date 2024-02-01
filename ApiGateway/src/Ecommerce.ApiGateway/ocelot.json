@@ -66,7 +66,11 @@
                 }
             ],
             "UpstreamPathTemplate": "/items/{id}",
-            "UpstreamHttpMethod": ["Get"]
+            "UpstreamHttpMethod": ["Get"],
+            "FileCacheOptions": {
+                "TtlSeconds": 30,
+                "Region": "ItemsRegion"
+            }
         },
         {
             "DownstreamPathTemplate": "/items",
@@ -98,6 +102,48 @@
             "AuthenticationOptions": {
                 "AuthenticationProviderKey": "Bearer",
                 "AllowedScopes": []
+            }
+        },
+
+
+        {
+            "DownstreamPathTemplate": "/orders",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5101
+                }
+            ],
+            "UpstreamPathTemplate": "/orders",
+            "UpstreamHttpMethod": ["Get", "Post"],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": []
+            },
+            "FileCacheOptions": {
+                "TtlSeconds": 30,
+                "Region": "OrdersRegion"
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/orders/{id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5101
+                }
+            ],
+            "UpstreamPathTemplate": "/orders/{id}",
+            "UpstreamHttpMethod": ["Get", "Put", "Delete"],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": []
+            },
+            "FileCacheOptions": {
+                "TtlSeconds": 30,
+                "Region": "OrdersRegion"
             }
         },
 
