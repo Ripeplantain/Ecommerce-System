@@ -50,39 +50,11 @@
                 }
             ],
             "UpstreamPathTemplate": "/items",
-            "UpstreamHttpMethod": ["Get"],
+            "UpstreamHttpMethod": ["Get", "Post"],
             "FileCacheOptions": {
                 "TtlSeconds": 30,
                 "Region": "ItemsRegion"
-            }
-        },
-        {
-            "DownstreamPathTemplate": "/items/{id}",
-            "DownstreamScheme": "http",
-            "DownstreamHostAndPorts": [
-                {
-                    "Host": "localhost",
-                    "Port": 5071
-                }
-            ],
-            "UpstreamPathTemplate": "/items/{id}",
-            "UpstreamHttpMethod": ["Get"],
-            "FileCacheOptions": {
-                "TtlSeconds": 30,
-                "Region": "ItemsRegion"
-            }
-        },
-        {
-            "DownstreamPathTemplate": "/items",
-            "DownstreamScheme": "http",
-            "DownstreamHostAndPorts": [
-                {
-                    "Host": "localhost",
-                    "Port": 5071
-                }
-            ],
-            "UpstreamPathTemplate": "/items",
-            "UpstreamHttpMethod": ["Post"],
+            },
             "AuthenticationOptions": {
                 "AuthenticationProviderKey": "Bearer",
                 "AllowedScopes": []
@@ -98,12 +70,17 @@
                 }
             ],
             "UpstreamPathTemplate": "/items/{id}",
-            "UpstreamHttpMethod": [ "Put", "Delete"],
+            "UpstreamHttpMethod": ["Get", "Delete", "Put"],
+            "FileCacheOptions": {
+                "TtlSeconds": 30,
+                "Region": "ItemsRegion"
+            },
             "AuthenticationOptions": {
                 "AuthenticationProviderKey": "Bearer",
                 "AllowedScopes": []
             }
         },
+
 
 
         {
@@ -149,6 +126,46 @@
 
 
 
+        {
+            "DownstreamPathTemplate": "/notifications",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5056
+                }
+            ],
+            "UpstreamPathTemplate": "/notifications",
+            "UpstreamHttpMethod": ["Get"],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": []
+            },
+            "FileCacheOptions": {
+                "TtlSeconds": 30,
+                "Region": "NotificationsRegion"
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/notifications/{id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5056
+                }
+            ],
+            "UpstreamPathTemplate": "/notifications/{id}",
+            "UpstreamHttpMethod": ["Get", "Put", "Delete"],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": []
+            },
+            "FileCacheOptions": {
+                "TtlSeconds": 30,
+                "Region": "NotificationsRegion"
+            }
+        },
         {
             "DownstreamPathTemplate": "/favicon.ico",
             "UpstreamPathTemplate": "/favicon.ico",
