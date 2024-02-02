@@ -3,7 +3,6 @@ using Ecommerce.Order.Dtos;
 using Ecommerce.Order.Entities;
 
 
-
 namespace Ecommerce.Order.Repository 
 {
     public interface IModelRepository
