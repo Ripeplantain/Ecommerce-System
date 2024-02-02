@@ -13,6 +13,10 @@ namespace Ecommerce.Order.Entities
         [Required]
         [MaxLength(50)]
         public string Name { get; set; } = string.Empty;
+        [Required]
+        public string Description { get; set; } = string.Empty;
+        [Required]
+        public decimal Price { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public ICollection<OrderEntity> Orders { get; set; } = null!;

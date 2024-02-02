@@ -1,40 +1,18 @@
 using Ecommerce.Common.MongoDB;
 using Ecommerce.Catalog.Entities;
 using Microsoft.OpenApi.Models;
-
+using Ecommerce.Common.MassTransit;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
-Random jitterer = new();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options =>
+builder.Services.AddSwaggerGen(c =>
 {
-    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        Description = "JWT Authorization header using the Bearer scheme.",
-        Type = SecuritySchemeType.Http,
-        Scheme = "Bearer",
-        In = ParameterLocation.Header
-    });
-
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Id = "Bearer",
-                    Type = ReferenceType.SecurityScheme
-                }
-            },
-            new string[] {}
-        }
-    });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ecommerce.Catalog", Version = "v1" });
 });
 
 builder.Services.AddControllers(options =>
@@ -43,7 +21,8 @@ builder.Services.AddControllers(options =>
 });
 
 builder.Services.AddMongo()
-    .AddMongoRepository<Product>("catalog","products");
+    .AddMongoRepository<Product>("catalog","products")
+    .AddMassTransitWithRabbitMq();
 
 builder.Services.AddCors(options =>
 {

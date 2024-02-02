@@ -63,3 +63,4 @@ msbuild.log
 
 .monogdbdata
 .postgresdata
+.rabbitmqdata

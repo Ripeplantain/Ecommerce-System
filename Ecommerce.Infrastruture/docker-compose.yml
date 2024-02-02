@@ -22,9 +22,23 @@ services:
       POSTGRES_DB: Ecommerce.UserManagementDB
     volumes:
       - .postgresdata:/var/lib/postgresql/data
-    
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - 5673:5672
+      - 15673:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - .rabbitmqdata:/var/lib/rabbitmq
+    hostname: rabbitmq
 
 
 volumes:
-  mongodbdata:
-  postgresdata:
+  .mongodbdata:
+  .postgresdata:
+  .rabbitmqdata:

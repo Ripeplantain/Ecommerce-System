@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BF4F8D1F-2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Api.Integration", "test\Catalog.Api.Integration\Catalog.Api.Integration.csproj", "{A5FB1649-FCEF-44CB-BD97-0E74E91491EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "contracts", "contracts\contracts.csproj", "{AB576453-1FF8-45DE-A935-E4C6ADC09C86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{A5FB1649-FCEF-44CB-BD97-0E74E91491EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5FB1649-FCEF-44CB-BD97-0E74E91491EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5FB1649-FCEF-44CB-BD97-0E74E91491EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB576453-1FF8-45DE-A935-E4C6ADC09C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB576453-1FF8-45DE-A935-E4C6ADC09C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB576453-1FF8-45DE-A935-E4C6ADC09C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB576453-1FF8-45DE-A935-E4C6ADC09C86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

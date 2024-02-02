@@ -3,6 +3,7 @@ using Ecommerce.Catalog.Controllers;
 using Ecommerce.Catalog.Dtos;
 using Ecommerce.Catalog.Entities;
 using Ecommerce.Common;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -15,12 +16,14 @@ namespace Ecommerce.Catalog.Tests.Controllers
         private readonly Mock<IRepository<Product>> _repositoryMock;
         private readonly Mock<ILogger<ProductController>> _loggerMock;
         private readonly ProductController _controller;
+        private readonly Mock<IPublishEndpoint> _publishEndpointMock;
 
         public ProductControllerTests()
         {
             _repositoryMock = new Mock<IRepository<Product>>();
             _loggerMock = new Mock<ILogger<ProductController>>();
-            _controller = new ProductController(_repositoryMock.Object, _loggerMock.Object);
+            _publishEndpointMock = new Mock<IPublishEndpoint>();
+            _controller = new ProductController(_repositoryMock.Object, _loggerMock.Object, _publishEndpointMock.Object);
         }
 
         [Fact]

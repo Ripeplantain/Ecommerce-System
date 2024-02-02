@@ -1,8 +1,10 @@
 using Ecommerce.Common;
-using Microsoft.AspNetCore.Mvc;
 using Ecommerce.Catalog.Entities;
 using Ecommerce.Catalog.Dtos;
+using Ecommerce.Catalog.Contract;
 using System.Linq.Expressions;
+using Microsoft.AspNetCore.Mvc;
+using MassTransit;
 
 
 namespace Ecommerce.Catalog.Controllers
@@ -13,13 +15,16 @@ namespace Ecommerce.Catalog.Controllers
     {
         private readonly IRepository<Product> _repository;
         private readonly ILogger<ProductController> _logger;
+        private readonly IPublishEndpoint _publishEndpoint;
     
         public ProductController(
             IRepository<Product> repository,
-            ILogger<ProductController> logger        )
+            ILogger<ProductController> logger,
+            IPublishEndpoint publishEndpoint)
         {
             _repository = repository;
             _logger = logger;
+            _publishEndpoint = publishEndpoint;
         }
 
         [HttpGet]
@@ -76,6 +81,12 @@ namespace Ecommerce.Catalog.Controllers
                 };
 
                 await _repository.CreateAsync(product);
+                await _publishEndpoint.Publish(new ProductCreated(
+                    product.Id,
+                    product.Name,
+                    product.Description,
+                    product.Price
+                ));
 
                 return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product.AsDto());
             } catch (Exception ex) {
@@ -100,6 +111,12 @@ namespace Ecommerce.Catalog.Controllers
                 existingProduct.Quantity = updateProductDto.Quantity;
 
                 await _repository.UpdateAsync(existingProduct);
+                await _publishEndpoint.Publish(new ProductUpdated(
+                    existingProduct.Id,
+                    existingProduct.Name,
+                    existingProduct.Description,
+                    existingProduct.Price
+                ));
 
                 return NoContent();
             } catch (Exception ex) {
@@ -119,6 +136,7 @@ namespace Ecommerce.Catalog.Controllers
                 }
     
                 await _repository.DeleteAsync(existingProduct.Id);
+                await _publishEndpoint.Publish(new ProductDeleted(existingProduct.Id));
     
                 return NoContent();
             } catch (Exception ex) {
