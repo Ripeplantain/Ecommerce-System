@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Ecommerce.Order.Database;
 using Ecommerce.Order.Repository;
+using Ecommerce.Common.MassTransit;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 // add Repository
 builder.Services.AddScoped<IModelRepository, ModelRepository>();
+
+builder.Services.AddMassTransitWithRabbitMq();
 
 var app = builder.Build();
 

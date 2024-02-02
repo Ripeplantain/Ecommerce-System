@@ -16,6 +16,6 @@ namespace Ecommerce.Notification.Entities
         public DateTime CreatedAt { get; set; }
         [ForeignKey("UserId")]
         public Guid UserId { get; set; }
-        public User User { get; set; } = null!;
+        public AppUser User { get; set; } = null!;
     }
 }

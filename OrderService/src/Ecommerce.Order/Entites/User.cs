@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Ecommerce.Order.Entities
 {
     [Table("Users")]
-    public class User
+    public class AppUser
     {
         [Required]
         [Key]

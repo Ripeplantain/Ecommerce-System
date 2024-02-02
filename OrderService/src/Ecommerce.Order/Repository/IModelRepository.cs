@@ -1,6 +1,4 @@
-using System.Linq.Expressions;
 using Ecommerce.Order.Dtos;
-using Ecommerce.Order.Entities;
 
 
 namespace Ecommerce.Order.Repository 

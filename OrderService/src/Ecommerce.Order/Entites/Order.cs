@@ -27,6 +27,6 @@ namespace Ecommerce.Order.Entities
         [ForeignKey("ProductId")]
         public Product Product { get; set; } = null!;
         [ForeignKey("UserId")]
-        public User User { get; set; } = null!;
+        public AppUser User { get; set; } = null!;
     }
 }

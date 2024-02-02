@@ -12,6 +12,7 @@ namespace Ecommerce.Order.Dtos
         DateTime OrderDate
     );
 
+
     public record CreateOrderDto
     (
         Guid UserId,

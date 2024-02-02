@@ -1,5 +1,6 @@
 using Ecommerce.Notification.Database;
 using Ecommerce.Notification.Repositories;
+using Ecommerce.Common.MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -17,6 +18,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 
 builder.Services.AddScoped<IRepository, Repository>();
+
+builder.Services.AddMassTransitWithRabbitMq();
 
 var app = builder.Build();
 

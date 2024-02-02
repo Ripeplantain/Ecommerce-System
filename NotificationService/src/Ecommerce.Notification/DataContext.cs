@@ -13,12 +13,12 @@ namespace Ecommerce.Notification.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<NotificationEntity>()
-                .HasOne<User>(n => n.User)
+                .HasOne<AppUser>(n => n.User)
                 .WithMany(u => u.Notifications)
                 .HasForeignKey(n => n.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<User>()
+            modelBuilder.Entity<AppUser>()
                 .HasMany<NotificationEntity>(u => u.Notifications)
                 .WithOne(n => n.User)
                 .HasForeignKey(n => n.UserId)
@@ -26,6 +26,6 @@ namespace Ecommerce.Notification.Database
         }
 
         public DbSet<NotificationEntity> Notifications { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<AppUser> Users { get; set; }
     }
 }

@@ -1,6 +1,8 @@
+using Ecommerce.Notification.Contract;
 using Ecommerce.Order.Dtos;
 using Ecommerce.Order.Entities;
 using Ecommerce.Order.Repository;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -8,10 +10,12 @@ namespace Ecommerce.Order.Controllers
 {
     [Route("orders")]
     public class OrderController(
-        IModelRepository modelRepository
+        IModelRepository modelRepository,
+        IPublishEndpoint publishEndpoint
     ) : ControllerBase
     {
         private readonly IModelRepository _modelRepository = modelRepository;
+        private readonly IPublishEndpoint _publishEndpoint = publishEndpoint;
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderEntity>>> GetProducts
@@ -51,6 +55,11 @@ namespace Ecommerce.Order.Controllers
         {
             try {
                 var order = await _modelRepository.CreateOrderAsync(createOrder);
+                await _publishEndpoint.Publish(new CreateNotification(
+                    "order created",
+                    "order created successfully",
+                    createOrder.UserId
+                ));
                 return StatusCode(201, order);
             } catch (Exception ex)
             {

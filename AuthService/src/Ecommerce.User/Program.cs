@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Ecommerce.User.Entities;
 using Ecommerce.User.Repository;
 using Ecommerce.User.Database;
-using Ecommerce.Common.Auth;
+using Ecommerce.Common.MassTransit;
 
 
 
@@ -45,6 +45,8 @@ builder.Services.AddControllers(
         options.SuppressAsyncSuffixInActionNames = false;
     }
 );
+
+builder.Services.AddMassTransitWithRabbitMq();
 
 
 // Add Authentication

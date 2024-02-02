@@ -2,6 +2,8 @@ using System.Security.Claims;
 using Ecommerce.User.Dto;
 using Ecommerce.User.Entities;
 using Ecommerce.User.Repository;
+using Ecommerce.User.Contract;
+using MassTransit;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -13,12 +15,14 @@ namespace Ecommerce.User.Controllers
     public class AccountController(
         ILogger<AccountController> logger,
         UserManager<AppUser> userManager,
-        ITokenRepository tokenRepository
+        ITokenRepository tokenRepository,
+        IPublishEndpoint publishEndpoint
         ) : ControllerBase
     {
         private readonly ILogger<AccountController> _logger = logger;
         private readonly UserManager<AppUser> _userManager = userManager;
         private readonly ITokenRepository _tokenRepository = tokenRepository;
+        private readonly IPublishEndpoint _publishEndpoint = publishEndpoint;
 
         [HttpPost("register")]
         public async Task<ActionResult> Register(UserRegisterDto input)
@@ -27,7 +31,6 @@ namespace Ecommerce.User.Controllers
                 var user = new AppUser {
                     FullName = input.FullName,
                     Email = input.Email,
-                    UserName = input.Email,
                     PhoneNumber = input.PhoneNumber
                 };
 
@@ -37,6 +40,8 @@ namespace Ecommerce.User.Controllers
                 {
                     return BadRequest(result.Errors);
                 }
+
+                await _publishEndpoint.Publish(new UserCreated(Guid.Parse(user.Id), user.FullName));
 
                 return StatusCode(201, user);
             } catch (Exception ex) {

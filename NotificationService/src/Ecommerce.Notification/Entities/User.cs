@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Ecommerce.Notification.Entities
 {
     [Table("Users")]
-    public class User
+    public class AppUser
     {
         [Key]
         public Guid Id { get; set; }
