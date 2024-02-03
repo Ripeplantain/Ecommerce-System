@@ -1,6 +1,6 @@
-using Ecommerce.Notification.Database;
-using Ecommerce.Notification.Repositories;
 using Ecommerce.Common.MassTransit;
+using Ecommerce.Common.MongoDB;
+using Ecommerce.Notification.Entities;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -12,14 +12,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<DataContext>(options =>
-{
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
 
-builder.Services.AddScoped<IRepository, Repository>();
-
-builder.Services.AddMassTransitWithRabbitMq();
+builder.Services.AddMongo()
+    .AddMongoRepository<NotificationEntity>("notificationsDb", "notifications")
+    .AddMassTransitWithRabbitMq();
 
 var app = builder.Build();
 

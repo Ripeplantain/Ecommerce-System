@@ -15,6 +15,7 @@ namespace Ecommerce.Order.Consumers
 
         public async Task Consume(ConsumeContext<ProductUpdated> context)
         {
+            Console.WriteLine("ProductUpdatedConsumer");
             var message = context.Message;
             var product = await _context.Products.FindAsync(message.Id);
             if (product == null)

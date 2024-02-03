@@ -1,21 +1,15 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Ecommerce.Common;
+
 
 namespace Ecommerce.Notification.Entities
 {
-    [Table("Notifications")]
-    public class NotificationEntity
+    public class NotificationEntity : IEntity
     {
-        [Key]
-        public int Id { get; set; }
-        [MaxLength(100)]
+        public Guid Id { get; set; }
         public string Title { get; set; } = null!;
-        [MaxLength(250)]
         public string Message { get; set; } = null!;
         public bool IsRead { get; set; }
         public DateTime CreatedAt { get; set; }
-        [ForeignKey("UserId")]
         public Guid UserId { get; set; }
-        public AppUser User { get; set; } = null!;
     }
 }

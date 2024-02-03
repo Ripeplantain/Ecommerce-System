@@ -31,7 +31,8 @@ namespace Ecommerce.User.Controllers
                 var user = new AppUser {
                     FullName = input.FullName,
                     Email = input.Email,
-                    PhoneNumber = input.PhoneNumber
+                    PhoneNumber = input.PhoneNumber,
+                    UserName = "user" + Guid.NewGuid().ToString("N").Substring(0, 8),
                 };
 
                 var result = await _userManager.CreateAsync(user, input.Password);

@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\AuthService\contracts\contracts.csproj" />
+    <ProjectReference Include="..\..\NoticationContracts\NoticationContracts.csproj" />
   </ItemGroup>
 
 </Project>

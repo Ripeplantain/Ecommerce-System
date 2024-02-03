@@ -15,26 +15,26 @@ namespace Ecommerce.Order.Consumers
             _context = context;
         }
 
-        public Task Consume(ConsumeContext<UserCreated> context)
+        public async Task Consume(ConsumeContext<UserCreated> context)
         {
+            Console.WriteLine("UserCreatedConsumer");
             var message = context.Message;
 
-            var user = _context.Users.Find(message.Id);
-            if (user != null)
+            var existingUser = await _context.Users.FindAsync(message.Id);
+    
+            if (existingUser == null)
             {
-                return Task.CompletedTask;
+                return;
             }
 
-            user = new AppUser
+            var user = new AppUser
             {
                 Id = message.Id,
                 Name = message.Name
             };
 
             _context.Users.Add(user);
-            _context.SaveChanges();
-
-            return Task.CompletedTask;
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Ecommerce.Order.Consumers
 
         public async Task Consume(ConsumeContext<ProductDeleted> context)
         {
+            Console.WriteLine("ProductDeletedConsumer");
             var message = context.Message;
             var product = await _context.Products.FindAsync(message.Id);
             if (product == null)

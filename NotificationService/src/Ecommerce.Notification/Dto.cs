@@ -2,7 +2,7 @@ namespace Ecommerce.Notification.Dtos
 {
     public record NotificationDto
     (
-        int Id,
+        Guid Id,
         string Title,
         string Message,
         bool IsRead,
@@ -36,7 +36,7 @@ namespace Ecommerce.Notification.Dtos
 
     public record UpdateNotificationDto
     (
-        int Id,
+        Guid Id,
         string Title,
         string Message,
         bool IsRead,

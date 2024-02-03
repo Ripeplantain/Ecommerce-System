@@ -56,7 +56,7 @@ namespace Ecommerce.Order.Controllers
             try {
                 var order = await _modelRepository.CreateOrderAsync(createOrder);
                 await _publishEndpoint.Publish(new CreateNotification(
-                    "order created",
+                    "order updated",
                     "order created successfully",
                     createOrder.UserId
                 ));
@@ -75,6 +75,11 @@ namespace Ecommerce.Order.Controllers
         {
             try {
                 await _modelRepository.UpdateOrderAsync(id, updateOrder);
+                await _publishEndpoint.Publish(new CreateNotification(
+                    "order updated",
+                    "your order would be delivered soon",
+                    updateOrder.UserId
+                ));
                 return Ok();
             } catch (Exception ex)
             {
