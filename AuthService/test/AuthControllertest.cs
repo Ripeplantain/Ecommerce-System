@@ -54,7 +54,7 @@ namespace Ecommerce.User.Tests.Controllers
             // Act
             var result = await _controller.Register(input);
 
-            // Assert
+            // Assert Statements
             var actionResult = Assert.IsType<ObjectResult>(result);
             Assert.Equal(201, actionResult.StatusCode);
         }
