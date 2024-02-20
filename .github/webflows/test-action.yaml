@@ -1,0 +1,30 @@
+name: Test Microservices
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies and test each Microservices
+      run: |
+        for d in $(find .  -type d -name "*Service"); do
+          echo "Restoring dependencies and testing $d"
+          cd "$d"
+          cd test
+          dotnet restore 
+          dotnet test 
+          cd  ../..
+        done 
